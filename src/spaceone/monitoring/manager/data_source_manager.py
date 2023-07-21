@@ -21,4 +21,4 @@ class DataSourceManager(BaseManager):
 
     def verify(self, params):
         activity_log_connector: PodLog = self.locator.get_connector('PodLog', **params)
-        activity_log_connector.set_connect(params.get('query'), params.get('options'), params.get('secret_data'))
+        activity_log_connector.set_connect(params.get('options'), params.get('secret_data'))

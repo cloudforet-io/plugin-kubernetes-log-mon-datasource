@@ -15,5 +15,4 @@ class Log(BaseAPI, log_pb2_grpc.LogServicer):
 
         with self.locator.get_service('MonitoringService', metadata) as log_svc:
             for logs in log_svc.list_logs(params):
-                print(logs)
-                yield logs
+                yield self.locator.get_info('LogsDataInfo', logs)

@@ -58,7 +58,7 @@ class KubeConnector(BaseConnector):
             ]
         }
 
-    def set_connect(self, query, options: dict, secret_data: dict):
+    def set_connect(self, options: dict, secret_data: dict):
         """
         cred(dict)
             - type: ..
@@ -68,7 +68,6 @@ class KubeConnector(BaseConnector):
             - subscription_id: ...
         """
         try:
-            print("HIHIHIHHIHIHI")
             kube_config = self._get_kube_config(secret_data)
             loader = KubeConfigLoader(config_dict=kube_config)
             configuration = client.Configuration()
@@ -78,10 +77,6 @@ class KubeConnector(BaseConnector):
             self.config = client.ApiClient(configuration)
 
             self.core_v1_client = client.CoreV1Api(self.config)
-            self.prevTime = query.get('previous_time', '')
-            self.namespace = query.get('namespace', '')
-            self.podName = query.get('podName', '')
 
         except Exception as e:
-            print(e)
             raise Exception("WHAT IS HAPPENING?", str(e))

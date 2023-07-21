@@ -33,7 +33,6 @@ class MonitoringService(BaseService):
 
         Returns: list of resources
         """
-        print("HERE? I AM SERVICE")
         mon_manager = self.locator.get_manager('MonitoringManager')
         for logs in mon_manager.list_logs(params):
             yield logs

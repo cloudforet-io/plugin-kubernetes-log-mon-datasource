@@ -33,8 +33,8 @@ class TestCollector(TestCase):
         print_json(v_info)
 
     def test_collect(self):
-        query = {'namespace': 'sooyoung', 'podName': 'nginx', 'previous_time': '2023-07-21T05:36:57.634876054Z'}
-        start = '2022-07-25T06:00:53.873Z'
+        query = {'namespace': 'sooyoung', 'podName': 'nginx'}
+        start = '2023-07-21T05:36:57.634876054Z'
         end = '2022-08-01T06:00:53.873Z'
 
         resource_stream = self.monitoring.Log.list({'options': {},
@@ -43,7 +43,8 @@ class TestCollector(TestCase):
                                                     'start': start,
                                                     'end': end})
 
-        print(resource_stream)
+        for res in resource_stream:
+            print_json(res)
 
 
 if __name__ == "__main__":
