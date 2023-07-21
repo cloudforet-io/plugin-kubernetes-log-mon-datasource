@@ -9,11 +9,17 @@ class TestCollector(TestCase):
 
     @classmethod
     def setUpClass(cls):
-        azure_cred = os.environ.get('AZURE_CRED')
-        test_config = utils.load_yaml_from_file(azure_cred)
+        CLUSTER_NAME = os.environ.get('CLUSTER_NAME', None)
+        TOKEN = os.environ.get('TOKEN', None)
+        SERVER = os.environ.get('SERVER', None)
+        CERTIFICATE_AUTHORITY_DATA = os.environ.get('CERTIFICATE_AUTHORITY_DATA', None)
 
-        cls.schema = 'azure_client_secret'
-        cls.azure_credentials = test_config.get('AZURE_CREDENTIALS', {})
+        cls.secret_data = {
+            "cluster_name": CLUSTER_NAME,
+            "certificate_authority_data": CERTIFICATE_AUTHORITY_DATA,
+            "server": SERVER,
+            "token": TOKEN
+        }
         super().setUpClass()
 
     def test_init(self):
@@ -23,22 +29,21 @@ class TestCollector(TestCase):
     def test_verify(self):
         options = {
         }
-        v_info = self.monitoring.DataSource.verify({'options': options, 'secret_data': self.azure_credentials})
+        v_info = self.monitoring.DataSource.verify({'options': options, 'secret_data': self.secret_data})
         print_json(v_info)
 
     def test_collect(self):
-        query = {'resource_uri': '/subscriptions/3ec64e1e-1ce8-4f2c-82a0-a7f6db0899ca/resourceGroups/jhsong-rg/providers/Microsoft.Compute/virtualMachines/jhsong-active-log-test'}
+        query = {'namespace': 'sooyoung', 'podName': 'nginx', 'previous_time': '2023-07-21T05:36:57.634876054Z'}
         start = '2022-07-25T06:00:53.873Z'
         end = '2022-08-01T06:00:53.873Z'
 
         resource_stream = self.monitoring.Log.list({'options': {},
-                                                    'secret_data': self.azure_credentials,
+                                                    'secret_data': self.secret_data,
                                                     'query': query,
                                                     'start': start,
                                                     'end': end})
 
-        for res in resource_stream:
-            print_json(res)
+        print(resource_stream)
 
 
 if __name__ == "__main__":
