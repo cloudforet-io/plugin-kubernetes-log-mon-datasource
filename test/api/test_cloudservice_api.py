@@ -33,7 +33,7 @@ class TestCollector(TestCase):
         print_json(v_info)
 
     def test_collect(self):
-        query = {'namespace': 'sooyoung', 'podName': 'nginx'}
+        query = {'namespace': 'sooyoung', 'name': 'nginx'}
         start = '2023-07-21T05:36:57.634876054Z'
         end = '2022-08-01T06:00:53.873Z'
 

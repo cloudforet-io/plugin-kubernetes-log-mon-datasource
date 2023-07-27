@@ -20,10 +20,10 @@ class MonitoringManager(BaseManager):
         kubernetes_log_connector: PodLog = self.locator.get_connector('PodLog', **params)
         kubernetes_log_connector.set_connect(params.get('options'), params.get('secret_data'))
 
-        logs = kubernetes_log_connector.list_logs()
+        logs = kubernetes_log_connector.list_logs(params)
 
-        for log in logs:
-            log_dict = self.create_log_dict(log)
+        for i in range(len(logs)):
+            log_dict = self.create_log_dict(logs[i])
             results.append(PodLogInfo(log_dict, strict=False))
         yield Log({'results': results})
 

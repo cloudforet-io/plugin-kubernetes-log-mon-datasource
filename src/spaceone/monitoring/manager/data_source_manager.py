@@ -20,5 +20,5 @@ class DataSourceManager(BaseManager):
         return response_model.to_primitive()
 
     def verify(self, params):
-        activity_log_connector: PodLog = self.locator.get_connector('PodLog', **params)
-        activity_log_connector.set_connect(params.get('options'), params.get('secret_data'))
+        kubernetes_log_connector: PodLog = self.locator.get_connector('PodLog', **params)
+        kubernetes_log_connector.set_connect(params.get('options'), params.get('secret_data'))

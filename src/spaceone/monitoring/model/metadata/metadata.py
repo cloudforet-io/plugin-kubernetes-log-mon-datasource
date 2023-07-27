@@ -22,7 +22,7 @@ class MetaDataView(Model):
 
 class LogMetadata(Model):
     view = ModelType(MetaDataView)
-    required_keys = ListType(StringType, default=['data.activity_log'])
+    required_keys = ListType(StringType, default=['data.pod_logs'])
     supported_providers = ListType(StringType, default=['kubernetes'])
 
     @classmethod

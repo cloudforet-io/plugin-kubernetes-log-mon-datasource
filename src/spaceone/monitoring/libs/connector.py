@@ -19,9 +19,6 @@ class KubeConnector(BaseConnector):
         """
 
         super().__init__(*args, **kwargs)
-        self.prevTime = None
-        self.podName = None
-        self.namespace = None
         self.core_v1_client = None
 
     @staticmethod
@@ -60,12 +57,7 @@ class KubeConnector(BaseConnector):
 
     def set_connect(self, options: dict, secret_data: dict):
         """
-        cred(dict)
-            - type: ..
-            - tenant_id: ...
-            - client_id: ...
-            - client_secret: ...
-            - subscription_id: ...
+        comment 바꾸기
         """
         try:
             kube_config = self._get_kube_config(secret_data)
@@ -75,7 +67,6 @@ class KubeConnector(BaseConnector):
             configuration.client_side_validation = False
             loader.load_and_set(configuration)
             self.config = client.ApiClient(configuration)
-
             self.core_v1_client = client.CoreV1Api(self.config)
 
         except Exception as e:
