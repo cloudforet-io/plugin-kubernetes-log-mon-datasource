@@ -1,8 +1,8 @@
 from schematics import Model
 from schematics.types import ListType, ModelType, PolyModelType, StringType
-from spaceone.monitoring.model.metadata.metadata_dynamic_layout import BaseLayoutField, TableDynamicLayout
-from spaceone.monitoring.model.metadata.metadata_dynamic_search import BaseDynamicSearch
-from spaceone.monitoring.model.metadata.metadata_dynamic_widget import BaseDynamicWidget
+from cloudforet.monitoring.model.metadata.metadata_dynamic_layout import BaseLayoutField, TableDynamicLayout
+from cloudforet.monitoring.model.metadata.metadata_dynamic_search import BaseDynamicSearch
+from cloudforet.monitoring.model.metadata.metadata_dynamic_widget import BaseDynamicWidget
 
 
 class MetaDataViewTable(Model):

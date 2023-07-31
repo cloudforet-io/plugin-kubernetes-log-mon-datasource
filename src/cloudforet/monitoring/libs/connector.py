@@ -1,7 +1,7 @@
 import os
 import logging
 from spaceone.core.connector import BaseConnector
-# from spaceone.monitoring.error.azure import *
+# from cloudforet.monitoring.error.azure import *
 from kubernetes import client
 from kubernetes.config.kube_config import KubeConfigLoader
 
@@ -20,6 +20,8 @@ class KubeConnector(BaseConnector):
 
         super().__init__(*args, **kwargs)
         self.core_v1_client = None
+        self.previous_time = kwargs.get('start', '')
+        self.query = kwargs.get('query')
 
     @staticmethod
     def _get_kube_config(secret_data):
@@ -57,7 +59,11 @@ class KubeConnector(BaseConnector):
 
     def set_connect(self, options: dict, secret_data: dict):
         """
-        comment 바꾸기
+        secret_data(dict)
+            - CLUSTER_NAME: ...
+            - TOKEN: ...
+            - SERVER: ...
+            - CERTIFICATE_AUTHORITY_DATA: ...
         """
         try:
             kube_config = self._get_kube_config(secret_data)
@@ -70,4 +76,4 @@ class KubeConnector(BaseConnector):
             self.core_v1_client = client.CoreV1Api(self.config)
 
         except Exception as e:
-            raise Exception("WHAT IS HAPPENING?", str(e))
+            raise Exception("Error Ocurred!", str(e))

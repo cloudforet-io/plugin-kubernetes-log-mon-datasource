@@ -1,6 +1,6 @@
 from schematics import Model
 from schematics.types.compound import PolyModelType
-from spaceone.monitoring.model import LogMetadata
+from cloudforet.monitoring.model import LogMetadata
 
 
 class DataSourceMetadata(Model):

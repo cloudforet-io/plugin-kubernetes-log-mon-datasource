@@ -2,9 +2,9 @@ import logging
 from spaceone.core.manager import BaseManager
 from spaceone.core import utils
 from spaceone.core.utils import get_dict_value
-from spaceone.monitoring.conf.monitoring_conf import *
-from spaceone.monitoring.connector.kubernetes_connector.pod_log import PodLog
-from spaceone.monitoring.model.log_model import Log, PodLogInfo
+from cloudforet.monitoring.conf.monitoring_conf import *
+from cloudforet.monitoring.connector.kubernetes_connector.pod_log import PodLog
+from cloudforet.monitoring.model.log_model import Log, PodLogInfo
 import dateutil.parser as date_parser
 
 _LOGGER = logging.getLogger(__name__)
@@ -20,10 +20,10 @@ class MonitoringManager(BaseManager):
         kubernetes_log_connector: PodLog = self.locator.get_connector('PodLog', **params)
         kubernetes_log_connector.set_connect(params.get('options'), params.get('secret_data'))
 
-        logs = kubernetes_log_connector.list_logs(params)
+        logs = kubernetes_log_connector.list_logs()
 
-        for i in range(len(logs)):
-            log_dict = self.create_log_dict(logs[i])
+        for log in logs:
+            log_dict = self.create_log_dict(log)
             results.append(PodLogInfo(log_dict, strict=False))
         yield Log({'results': results})
 

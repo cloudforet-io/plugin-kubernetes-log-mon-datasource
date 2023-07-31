@@ -1,6 +1,6 @@
 import logging
 from spaceone.core.service import *
-from spaceone.monitoring.manager.data_source_manager import DataSourceManager
+from cloudforet.monitoring.manager.data_source_manager import DataSourceManager
 
 _LOGGER = logging.getLogger(__name__)
 

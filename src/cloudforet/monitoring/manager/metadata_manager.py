@@ -1,9 +1,9 @@
 import logging
 from spaceone.core.manager import BaseManager
-from spaceone.monitoring.model.metadata.metadata import LogMetadata
-from spaceone.monitoring.model.metadata.metadata_dynamic_field import TextDyField, DateTimeDyField, ListDyField, \
+from cloudforet.monitoring.model.metadata.metadata import LogMetadata
+from cloudforet.monitoring.model.metadata.metadata_dynamic_field import TextDyField, DateTimeDyField, ListDyField, \
     MoreField
-from spaceone.monitoring.conf.monitoring_conf import *
+from cloudforet.monitoring.conf.monitoring_conf import *
 
 _LOGGER = logging.getLogger(__name__)
 

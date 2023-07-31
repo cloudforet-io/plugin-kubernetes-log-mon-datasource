@@ -1,5 +1,5 @@
 from schematics.types import ListType
-from spaceone.monitoring.model.metadata.metadata_dynamic_field import *
+from cloudforet.monitoring.model.metadata.metadata_dynamic_field import *
 
 
 class LayoutOptions(Model):
