@@ -3,7 +3,7 @@ from spaceone.core.manager import BaseManager
 from spaceone.core import utils
 from spaceone.core.utils import get_dict_value
 from cloudforet.monitoring.conf.monitoring_conf import *
-from cloudforet.monitoring.connector.kubernetes_connector.pod_log import PodLog
+from cloudforet.monitoring.connector import PodLog
 from cloudforet.monitoring.model.log_model import Log, PodLogInfo
 import dateutil.parser as date_parser
 

@@ -1,6 +1,6 @@
 import logging
 from spaceone.core.manager import BaseManager
-from cloudforet.monitoring.connector.kubernetes_connector.pod_log import PodLog
+from cloudforet.monitoring.connector import PodLog
 from cloudforet.monitoring.model.data_source_response_model import DataSourceMetadata
 from cloudforet.monitoring.manager.metadata_manager import MetadataManager
 
