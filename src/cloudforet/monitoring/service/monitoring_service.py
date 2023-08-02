@@ -12,7 +12,7 @@ class MonitoringService(BaseService):
     @transaction
     @check_required(['options', 'secret_data', 'query', 'start', 'end'])
     @change_timestamp_value(['start', 'end'], timestamp_format='iso8601')
-    def list_logs(self, params):
+    def list(self, params):
         """ Get quick list of resources
 
         Args:
