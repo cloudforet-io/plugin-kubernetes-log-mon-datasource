@@ -25,12 +25,16 @@ class PodLog(KubeConnector):
             pod_logs = self.core_v1_client.read_namespaced_pod_log(name=pod_name, namespace=namespace,
                                                                    timestamps=True,
                                                                    since_seconds=math.ceil(difference))
+            if not pod_logs:
+                # if no logs exist, return empty list
+                return []
             parsed_logs = pod_logs.rstrip('\n').split('\n')
             new_logs_index = self.find_new_logs(parsed_logs, previous_time)
             if new_logs_index:
                 result = parsed_logs[new_logs_index+1:]
             else:
                 result = parsed_logs
+
             # for lg in result:
             #     print(lg)
             # print(result[-1].split(' ')[0])  # last log timestamp
