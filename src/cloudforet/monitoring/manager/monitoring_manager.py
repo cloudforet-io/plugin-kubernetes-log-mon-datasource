@@ -44,4 +44,5 @@ class MonitoringManager(BaseManager):
         result = dict()
         result['timestamp'] = utc_time
         result['message'] = message
+
         return result
